@@ -1,0 +1,66 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @key(fields: String!) on OBJECT | INTERFACE
+
+directive @extends on OBJECT | INTERFACE
+
+directive @external on OBJECT | FIELD_DEFINITION
+
+directive @requires(fields: String!) on FIELD_DEFINITION
+
+directive @provides(fields: String!) on FIELD_DEFINITION
+
+type PageInfo {
+  currentPage: Int!
+  pageSize: Int!
+  totalPage: Int!
+}
+
+type CreatedProductObject {
+  success: Boolean!
+}
+
+type UpdatedProductObject {
+  success: Boolean!
+}
+
+type DeletedProductObject {
+  success: Boolean!
+}
+
+type GetListProductObject {
+  count: Int!
+  pageInfo: PageInfo!
+  data: [GetListProductData!]
+}
+
+type GetListProductData {
+  id: String!
+  name: String!
+  sku: String!
+  lastUpdate: String!
+}
+
+type Query {
+  getListProducts(pageSize: Int = 10, currentPage: Int = 1, orderType: String = "asc", orderBy: String = "name"): GetListProductObject!
+}
+
+type Mutation {
+  createProduct(input: CreateProductRequest!): CreatedProductObject!
+  updateProduct(input: UpdateProductBodyRequest!, id: String!): UpdatedProductObject!
+  deleteProduct(id: String!): DeletedProductObject!
+}
+
+input CreateProductRequest {
+  name: String!
+  sku: String!
+  type: String!
+}
+
+input UpdateProductBodyRequest {
+  name: String!
+  sku: String!
+  type: String!
+}
